@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Videograph Template">
+    <meta name="keywords" content="Videograph, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>fraza</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <style>
+        /* Custom style untuk membuat seluruh area gambar bisa diklik */
+        .portfolio__item__video {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 10px 10px 0 0;
+            /* make background images cover the box and stay centered */
+            background-size: cover !important;
+            background-position: center center !important;
+            background-repeat: no-repeat !important;
+            /* consistent height to make PNGs fit into a uniform card */
+            height: 220px;
+        }
+        
+        .portfolio__item__video a {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0);
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio__item__video a .play-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 20px;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+        
+        .portfolio__item__video:hover a .play-btn {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .portfolio__item__video:hover a {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .portfolio__item__video::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+        
+        .portfolio__item__video:hover::after {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .portfolio__item {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+        
+        .portfolio__item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .portfolio__item__text {
+            padding: 20px;
+            background: #fff;
+        }
+        
+        .portfolio__item__text h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .portfolio__item__text ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .portfolio__item__text ul li {
+            background: #f8f9fa;
+            color: #6c757d;
+            padding: 5px 12px;
+            border-radius: 4px;
+            margin-right: 8px;
+            margin-bottom: 5px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .portfolio__item__text span {
+            color: #6c757d;
+            font-size: 14px;
+            font-style: italic;
+        }
+        
+        /* Portfolio Clickable Items */
+        .portfolio-clickable {
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .portfolio-clickable .portfolio__item__video a {
+            cursor: pointer;
+        }
+        
+        /* Game Modal Styling */
+        .game-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s ease-in;
+            backdrop-filter: blur(2px);
+        }
+        
+        .game-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .game-modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: -1;
+        }
+        
+        .game-modal-content {
+            background-color: transparent;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            width: 100%;
+            max-width: 1100px;
+            position: relative;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s ease-out;
+        }
+        
+        .game-modal-close {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #fff;
+            border: none;
+            background: rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+        
+        .game-modal-close:hover {
+            color: #fff;
+            background: rgba(0, 0, 0, 0.8);
+            transform: rotate(90deg);
+        }
+        
+        .game-modal-title {
+            font-size: 28px;
+            margin: 0 0 20px 0;
+            color: #fff;
+            font-weight: 700;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+        
+        .game-modal-body {
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .game-embed-container {
+            width: 100%;
+            height: 600px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .game-embed-container iframe {
+            width: 100% !important;
+            height: 100% !important;
+            border: none;
+            display: block;
+        }
+        
+        .game-loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            gap: 15px;
+            color: #fff;
+        }
+        
+        .game-loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top: 4px solid #00bfe7;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Game Modal */
+        @media (max-width: 768px) {
+            .game-modal-content {
+                padding: 20px;
+                max-width: 95%;
+                box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.3);
+            }
+            
+            .game-modal-title {
+                font-size: 22px;
+            }
+            
+            .game-embed-container {
+                height: 400px;
+                min-height: 300px;
+            }
+            
+            .game-modal-close {
+                right: 10px;
+                top: 10px;
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .game-modal-content {
+                padding: 15px;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.3);
+            }
+            
+            .game-modal-title {
+                font-size: 18px;
+            }
+            
+            .game-embed-container {
+                height: 300px;
+                min-height: 250px;
+            }
+        }
+        
+        /* Portfolio Filter */
+        .portfolio__filter {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .portfolio__filter li {
+            padding: 10px 25px;
+            margin: 0 5px 10px;
+            background: #f8f9fa;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: #495057;
+            border: 2px solid transparent;
+        }
+        
+        .portfolio__filter li.active, 
+        .portfolio__filter li:hover {
+            background: #6c757d;
+            color: #fff;
+            border-color: #6c757d;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .portfolio__filter {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .portfolio__filter li {
+                white-space: nowrap;
+            }
+        }
+        /* Page-specific override: place the rain toggle in the page flow (not fixed)
+           so it sits near the breadcrumb and scrolls with the page until the
+           portfolio area (and remains above the footer). Keep it aligned to the
+           right on wide screens and centered on small screens. */
+        /* Make the toggle fixed to the viewport's bottom-right corner and responsive.
+           The button will always be visible in the lower-right and will resize
+           for smaller screens. */
+        .breadcrumb-option { position: relative; }
+        .rain-toggle {
+            position: fixed !important;
+            right: 18px !important;
+            bottom: 18px !important;
+            left: auto !important;
+            z-index: 100030 !important;
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
+            padding: 6px !important;
+            background: rgba(0,0,0,0.24) !important;
+            box-shadow: 0 10px 28px rgba(0,0,0,0.45) !important;
+            border-radius: 12px !important;
+            width: auto !important;
+            transition: transform .16s ease, background .18s ease;
+        }
+
+        /* Button sizing: larger on desktop, slightly smaller on tablet, compact on mobile */
+        .rain-toggle .rt-toggle {
+            width: 56px !important;
+            height: 56px !important;
+            font-size: 20px !important;
+            border-radius: 50% !important;
+            padding: 0 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        @media (max-width: 991px) {
+            .rain-toggle { right: 14px !important; bottom: 14px !important; }
+            .rain-toggle .rt-toggle { width: 48px !important; height: 48px !important; font-size: 18px !important; }
+        }
+
+        @media (max-width: 480px) {
+            .rain-toggle { right: 10px !important; bottom: 10px !important; }
+            .rain-toggle .rt-toggle { width: 42px !important; height: 42px !important; font-size: 16px !important; }
+        }
+
+        /* Hover/focus affordance */
+        .rain-toggle .rt-toggle:hover,
+        .rain-toggle .rt-toggle:focus {
+            transform: translateY(-3px);
+            background: rgba(255,255,255,0.04) !important;
+            outline: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Rain effect canvas (visual only) -->
+    <canvas id="rain-canvas" class="rain-canvas" aria-hidden="true"></canvas>
+    <!-- Toggle control for rain/fire effects (single moon-style toggle) -->
+    <!-- moved below the header so it appears under the navbar -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container-fluid header__container">
+            <div class="header__wrapper">
+                <!-- Logo dengan animasi -->
+                <div class="header__logo">
+                    <a href="./index.html" class="logo-link">
+                        <img class="logo-img logo-crown" src="img/logo.png" alt="Logo">
+                        <span class="logo-glow"></span>
+                    </a>
+                </div>
+
+                <!-- Navigation Menu -->
+                <nav class="header__nav__menu mobile-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="./index.html" class="nav__link">Home</a>
+                            <span class="nav__underline"></span>
+                        </li>
+                        <li class="nav__item">
+                            <a href="./about.html" class="nav__link">About</a>
+                            <span class="nav__underline"></span>
+                        </li>
+                        <li class="nav__item active">
+                            <a href="./portfolio.html" class="nav__link">Portfolio</a>
+                            <span class="nav__underline"></span>
+                        </li>
+                        <li class="nav__item">
+                            <a href="./services.html" class="nav__link">Services</a>
+                            <span class="nav__underline"></span>
+                        </li>
+                        <li class="nav__item dropdown-toggle">
+                            <a href="#" class="nav__link dropdown-trigger">Pages</a>
+                            <span class="nav__underline"></span>
+                            <ul class="dropdown">
+                                <li><a href="./about.html">About</a></li>
+                                <li><a href="./portfolio.html">Portfolio</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav__item">
+                            <a href="./contact.html" class="nav__link">Contact</a>
+                            <span class="nav__underline"></span>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Social Icons -->
+                <div class="header__nav__social">
+                    <a href="#" class="social-icon" title="Facebook">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a href="#" class="social-icon" title="Twitter">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-icon" title="Instagram">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Place toggle directly under the navbar (moved later near breadcrumb) -->
+
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option spad set-bg" data-setbg="img/breadcrumb-bg.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>About My Work</h2>
+                        <div class="breadcrumb__links">
+                            <a href="about.html">My</a>
+                            <span>Work</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Toggle placed inside breadcrumb so it sits bottom-right of this section and scrolls with page -->
+            <div class="rain-toggle" aria-hidden="false">
+                <button id="effect-toggle" class="rt-toggle" aria-pressed="false" title="Toggle Rain/Fire" type="button">
+                        <i class="fa fa-tint" aria-hidden="true"></i>
+                    </button>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+    <!-- Portfolio Section Begin -->
+    <section class="portfolio spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                            <ul class="portfolio__filter">
+                                <li class="active" data-filter="*">All</li>
+                                <li data-filter=".branding">Game development</li>
+                                <li data-filter=".digital-marketing">Web development</li>
+                                <li data-filter=".three-d">3D Assets</li>
+                            </ul>
+                </div>
+            </div>
+            <div class="row portfolio__gallery">
+                <!-- Game Development Projects -->
+                <div class="col-lg-4 col-md-6 col-sm-6 mix branding">
+                    <div class="portfolio__item portfolio-clickable" data-game-title="The Cave Adventure" data-game-url="https://itch.io/embed-upload/15023031?color=333333">
+                        <div class="portfolio__item__video set-bg" data-setbg="img/portfolio/2.png">
+                            <a href="#" class="play-btn" onclick="return false;">
+                                <i class="fa fa-external-link"></i>
+                            </a>
+                        </div>
+                        <div class="portfolio__item__text">
+                            <h4>The Cave Adventure</h4>
+                            <ul>
+                                <li>Unity</li>
+                                <li>C#</li>
+                                <li>2D Platformer</li>
+                            </ul>
+                            <p class="project-desc" style="display:none">A 2D platformer created with Unity. Players explore caves, collect items, and solve puzzles to progress through levels.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 col-sm-6 mix branding">
+                    <div class="portfolio__item portfolio-clickable" data-game-title="Animal Quiz Game" data-game-url="https://itch.io/embed-upload/13753349?color=333333">
+                        <div class="portfolio__item__video set-bg" data-setbg="img/portfolio/1.png">
+                            <a href="#" class="play-btn" onclick="return false;">
+                                <i class="fa fa-external-link"></i>
+                            </a>
+                        </div>
+                        <div class="portfolio__item__text">
+                            <h4>Animal Quiz Game</h4>
+                            <ul>
+                                <li>Unity</li>
+                                <li>2D Game</li>
+                                <li>Educational</li>
+                            </ul>
+                            <p class="project-desc" style="display:none">An educational quiz game teaching animal recognition and facts, built with Unity for young learners.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web Development Projects -->
+                <div class="col-lg-4 col-md-6 col-sm-6 mix digital-marketing">
+                    <div class="portfolio__item portfolio-clickable" data-game-title="Python Learning Platform" data-game-url="https://fzaluu.github.io/X-python/">
+                        <div class="portfolio__item__video set-bg" data-setbg="img/portfolio/py.png">
+                            <a href="#" class="play-btn" onclick="return false;">
+                                <i class="fa fa-github"></i>
+                            </a>
+                        </div>
+                        <div class="portfolio__item__text">
+                            <h4>Python Learning Platform</h4>
+                            <ul>
+                                <li>HTML/CSS</li>
+                                <li>JavaScript</li>
+                                <li>Python</li>
+                            </ul>
+                            <p class="project-desc" style="display:none">A web-based platform with interactive Python tutorials and examples, focused on beginners and practice exercises.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 col-sm-6 mix digital-marketing">
+                    <div class="portfolio__item portfolio-clickable" data-game-title="Personal Portfolio" data-game-url="https://fzaluu.github.io/frazaa-S.A/">
+                        <div class="portfolio__item__video set-bg" data-setbg="img/portfolio/3.png">
+                            <a href="#" class="play-btn" onclick="return false;">
+                                <i class="fa fa-github"></i>
+                            </a>
+                        </div>
+                        <div class="portfolio__item__text">
+                            <h4>Personal Portfolio</h4>
+                            <ul>
+                                <li>HTML/CSS</li>
+                                <li>JavaScript</li>
+                                <li>Responsive</li>
+                            </ul>
+                            <p class="project-desc" style="display:none">A responsive personal portfolio website showcasing projects, contact info, and experience with modern layout techniques.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web Development Projects -->
+                <div class="col-lg-4 col-md-6 col-sm-6 mix digital-marketing">
+                    <div class="portfolio__item portfolio-clickable" data-game-title="School Project Website" data-game-url="https://fzaluu.github.io/rzaxpplg2/">
+                        <div class="portfolio__item__video set-bg" data-setbg="img/portfolio/logo.webp">
+                            <a href="#" class="play-btn" onclick="return false;">
+                                <i class="fa fa-github"></i>
+                            </a>
+                        </div>
+                        <div class="portfolio__item__text">
+                            <h4>School Project Website</h4>
+                            <ul>
+                                <li>HTML/CSS</li>
+                                <li>Bootstrap</li>
+                                <li>JavaScript</li>
+                            </ul>
+                            <p class="project-desc" style="display:none">A school project site built using Bootstrap, demonstrating responsive pages, forms, and simple interactive features.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 3D Asset - Blender Project -->
+                <div class="col-lg-4 col-md-6 col-sm-6 mix branding digital-marketing three-d">
+                    <div class="portfolio__item portfolio-clickable" data-game-title="Hardsurface 3D Model" data-game-url="https://sketchfab.com/models/09efd27089254b089af56cb78d855e56/embed">
+                        <div class="portfolio__item__video set-bg" data-setbg="img/hard.png">
+                            <a href="#" class="play-btn" onclick="return false;">
+                                <i class="fa fa-cube"></i>
+                            </a>
+                        </div>
+                        <div class="portfolio__item__text">
+                            <h4>Hardsurface 3D Model</h4>
+                            <ul>
+                                <li>Blender</li>
+                                <li>3D Modeling</li>
+                                <li>Hardsurface</li>
+                            </ul>
+                            <p class="project-desc" style="display:none">A professional hardsurface 3D model created in Blender, showcasing modeling techniques and attention to detail in mechanical design.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Portfolio Section End -->
+
+    <!-- Game Embed Modal -->
+    <div id="game-modal" class="game-modal" aria-hidden="true">
+        <div class="game-modal-backdrop" role="presentation"></div>
+        <div class="game-modal-content" role="dialog" aria-modal="true" aria-labelledby="game-modal-title">
+            <button class="game-modal-close" aria-label="Close">&times;</button>
+            <h3 id="game-modal-title" class="game-modal-title"></h3>
+            <div class="game-modal-body">
+                <div class="game-embed-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__top">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="footer__top__logo">
+                            <a href="#"><img class="logo-img" src="img/logo.png" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="footer__top__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__option">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="footer__option__item">
+                            <h5>Hello</h5>
+                            <p>I'm Za — a web and game developer who enjoys creating clean, interactive, and meaningful digital experiences. I love exploring technology, blending creativity with logic, and continuously improving through every project I build.</p>
+                            <a href="about.html" class="read__more">Read more <span class="arrow_right"></span></a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-12">
+                        <div class="footer__option__item">
+                            <form action="#">
+                                <input type="text" placeholder="Email">
+                                <button type="submit"><i class="fa fa-send"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__copyright">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p class="footer__copyright__text">Copyright &copy;
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>
+                            | FRAZA S.A  
+                        </p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/masonry.pkgd.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+        <!-- Back to top -->
+        <button class="back-to-top" aria-label="Back to top" title="Back to top"><i class="fa fa-arrow-up"></i></button>
+
+        <script>
+        (function(){
+            var btn = document.querySelector('.back-to-top');
+            if(!btn) return;
+            function checkScroll(){ if(window.scrollY > 320) btn.classList.add('show'); else btn.classList.remove('show'); }
+            window.addEventListener('scroll', checkScroll);
+            checkScroll();
+            btn.addEventListener('click', function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+        })();
+        
+        // Game Modal System
+        (function() {
+            const modal = document.getElementById('game-modal');
+            const closeBtn = document.querySelector('.game-modal-close');
+            const modalTitle = document.getElementById('game-modal-title');
+            const embedContainer = document.querySelector('.game-embed-container');
+            const portfolioItems = document.querySelectorAll('.portfolio-clickable');
+            
+            // Open modal ketika klik portfolio item
+            portfolioItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const title = this.getAttribute('data-game-title');
+                    const url = this.getAttribute('data-game-url');
+                    
+                    // Set title
+                    modalTitle.textContent = title;
+                    
+                    // Clear container dan tambah loading
+                    embedContainer.innerHTML = '<div class="game-loading"><div class="game-loading-spinner"></div><p>Loading game...</p></div>';
+                    
+                    // Show modal
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Embed game dengan iframe otomatis
+                    let embedHTML = '';
+                    
+                    // Cek jika URL adalah itch.io embed-upload
+                    if (url.includes('embed-upload')) {
+                        // Format: https://itch.io/embed-upload/15023031?color=333333
+                        embedHTML = `<iframe frameborder="0" src="${url}" allowfullscreen="" style="width:100%; height:100%; border:none; border-radius:8px;"></iframe>`;
+                    } else if (url.includes('sketchfab.com')) {
+                        // Format: https://sketchfab.com/models/09efd27089254b089af56cb78d855e56/embed
+                        embedHTML = `<iframe title="3D Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share style="width:100%; height:100%; border:none; border-radius:8px;" src="${url}"></iframe>`;
+                    } else if (url.includes('itch.io')) {
+                        // Untuk regular itch.io profile - gunakan /embed
+                        embedHTML = `<iframe src="${url}/embed" style="width:100%; height:100%; border:none; border-radius:8px;"></iframe>`;
+                    } else {
+                        // Untuk website biasa - gunakan direct iframe
+                        embedHTML = `<iframe src="${url}" style="width:100%; height:100%; border:none; border-radius:8px;"></iframe>`;
+                    }
+                    
+                    // Embed setelah loading animation
+                    setTimeout(() => {
+                        embedContainer.innerHTML = embedHTML;
+                    }, 500);
+                });
+            });
+            
+            // Close modal function
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                embedContainer.innerHTML = '';
+            }
+            
+            // Close dengan tombol X
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeModal);
+            }
+            
+            // Close dengan klik backdrop
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Close dengan ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+        })();
+        </script>
+</body>
+
+</html>

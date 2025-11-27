@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Videograph Template">
+    <meta name="keywords" content="Videograph, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>fraza</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <style>
+        /* Testimonial enhancements: card look, responsive, and simple animations */
+        .testimonial {
+            padding-top: 80px;
+            padding-bottom: 80px;
+            position: relative;
+            color: #fff;
+        }
+
+        .testimonial__slider .testimonial__item {
+            background: linear-gradient(135deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.55) 100%);
+            border-radius: 14px;
+            padding: 28px 24px;
+            box-shadow: 0 18px 40px rgba(12, 24, 40, 0.45);
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.45s cubic-bezier(.2,.9,.3,1), box-shadow 0.45s;
+            opacity: 0.98;
+        }
+
+        .testimonial__slider .testimonial__item:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 28px 60px rgba(12,24,40,0.55);
+        }
+
+        .testimonial__text p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #f1f6f9;
+            margin-bottom: 18px;
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .testimonial__text p::before {
+            content: '\201C';
+            font-size: 44px;
+            position: absolute;
+            left: 0;
+            top: -6px;
+            color: rgba(255,255,255,0.15);
+            font-weight: 700;
+        }
+
+        .testimonial__author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .testimonial__author__pic img {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255,255,255,0.12);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+        }
+
+        .testimonial__author__text h5 { color: #fff; margin: 0; font-size: 16px; }
+        .testimonial__author__text span { color: rgba(255,255,255,0.65); font-size: 13px; }
+
+        /* Owl animation helpers (simple fade in/out) */
+        @keyframes tg-fadeIn {
+            0% { opacity: 0; transform: translateY(18px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes tg-fadeOut {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-18px); }
+        }
+
+        .fadeIn {
+            animation-name: tg-fadeIn;
+            animation-duration: 600ms;
+            animation-fill-mode: both;
+        }
+
+        .fadeOut {
+            animation-name: tg-fadeOut;
+            animation-duration: 450ms;
+            animation-fill-mode: both;
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 991px) {
+            .testimonial__slider .testimonial__item { min-height: 200px; padding: 22px; }
+            .testimonial__author__pic img { width: 54px; height: 54px; }
+        }
+
+        @media (max-width: 576px) {
+            .testimonial__text p { font-size: 15px; padding-left: 34px; }
+            .testimonial__author__pic img { width: 48px; height: 48px; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container-fluid header__container">
+            <div class="header__wrapper">
+                <!-- Logo dengan animasi -->
+                <div class="header__logo">
+                    <a href="./index.html" class="logo-link">
+                        <img class="logo-img logo-crown" src="img/logo.png" alt="Logo">
+                        <span class="logo-glow"></span>
+                    </a>
+                </div>
+
+                <!-- Navigation Menu -->
+                <nav class="header__nav__menu mobile-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="./index.html" class="nav__link">Home</a>
+                            <span class="nav__underline"></span>
+                        </li>
+                        <li class="nav__item active">
+                            <a href="./about.html" class="nav__link">About</a>
+                            <span class="nav__underline"></span>
+                        </li>
+                        <li class="nav__item">
+                            <a href="./portfolio.html" class="nav__link">Portfolio</a>
+                            <span class="nav__underline"></span>
+                        </li>
+                        <li class="nav__item">
+                            <a href="./services.html" class="nav__link">Services</a>
+                            <span class="nav__underline"></span>
+                        </li>
+                        <li class="nav__item dropdown-toggle">
+                            <a href="#" class="nav__link dropdown-trigger">Pages</a>
+                            <span class="nav__underline"></span>
+                            <ul class="dropdown">
+                                <li><a href="./about.html">About</a></li>
+                                <li><a href="./portfolio.html">Portfolio</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav__item">
+                            <a href="./contact.html" class="nav__link">Contact</a>
+                            <span class="nav__underline"></span>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Social Icons -->
+                <div class="header__nav__social">
+                    <a href="#" class="social-icon" title="Facebook">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a href="#" class="social-icon" title="Twitter">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-icon" title="Instagram">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option spad set-bg" data-setbg="img/breadcrumb-bg.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>About Me</h2>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- About Section Begin -->
+    <section class="about spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="about__pic">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="about__pic__item about__pic__item--large set-bg"
+                                    data-setbg="img/team/team-1.jpeg">
+                                    <button class="img-open" type="button" aria-label="Open image"><i class="fa fa-expand"></i></button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="about__pic__item set-bg" data-setbg="img/about/about-2.png">
+                                            <button class="img-open" type="button" aria-label="Open image"><i class="fa fa-expand"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="about__pic__item set-bg" data-setbg="img/about/about-3.png">
+                                            <button class="img-open" type="button" aria-label="Open image"><i class="fa fa-expand"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about__text">
+                        <div class="section-title">
+                            <span>About me</span>
+                            <h2>WHo am i?</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="services__item">
+                                    <div class="services__item__icon">
+                                        <img src="img/icons/si-3.png" alt="">
+                                    </div>
+                                    <h4>Web Developer</h4>
+                                    <p>I build responsive, fast, and user-friendly websites using modern web technologies.
+My work focuses on clean UI, smooth UX, and scalable code that performs well across all devices.
+From landing pages to full web applications, I turn design concepts into functional and visually appealing digital experiences.</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="services__item">
+                                    <div class="services__item__icon">
+                                        <img src="img/icons/si-2.png" alt="">
+                                    </div>
+                                    <h4>Game Developer</h4>
+                                    <p>I create interactive and engaging games by combining creative design with solid programming.
+My work includes building gameplay systems, designing mechanics, and ensuring smooth performance on multiple platforms.
+I’m passionate about bringing ideas to life and crafting fun, immersive player experiences.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about__text__desc">
+                            <p>I am a Web Developer and Game Developer who enjoys creating interactive digital experiences.
+On the web side, I build clean, responsive, and user-friendly interfaces using modern front-end technologies.
+On the game development side, I design and develop gameplay systems, mechanics, and features that bring creative ideas to life.
+I love combining design, logic, and creativity to deliver products that are functional, visually appealing, and enjoyable for users.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Section End -->
+
+    <!-- Testimonial Section Begin -->
+    <section class="testimonial spad set-bg" data-setbg="img/testimonial-bg.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title center-title">
+                        <span>Loved By Clients</span>
+                        <h2>What clients say?</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="testimonial__slider owl-carousel">
+                    <div class="col-lg-4">
+                        <div class="testimonial__item">
+                            <div class="testimonial__text">
+                                <p>"He built our website from scratch and turned our concept into a professional, user-friendly platform. He’s reliable, skilled, and always open to feedback. We’re very happy with the final result."
+
+                                </p>
+                            </div>
+                            <div class="testimonial__author">
+                                <div class="testimonial__author__pic">
+                                    <img src="img/testimonial/1.jpeg" alt="">
+                                </div>
+                                <div class="testimonial__author__text">
+                                    <h5>REIFAN</h5>
+                                    <span>Business Owner</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="testimonial__item">
+                            <div class="testimonial__text">
+                                <p>"The game prototype he developed exceeded our expectations. The mechanics felt smooth, the UI was intuitive, and the overall experience was fun to test. He communicates well and brings great creative ideas to the table."</p>
+                            </div>
+                            <div class="testimonial__author">
+                                <div class="testimonial__author__pic">
+                                    <img src="img/testimonial/3.jpeg" alt="">
+                                </div>
+                                <div class="testimonial__author__text">
+                                    <h5>ZAHIR </h5>
+                                    <span>Indie Game Founder</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="testimonial__item">
+                            <div class="testimonial__text">
+                                <p>"Working with him was an amazing experience. He delivered the web interface faster than expected and with excellent attention to detail. The design is clean, responsive, and exactly what our team needed. Highly recommended!"</p>
+                            </div>
+                            <div class="testimonial__author">
+                                <div class="testimonial__author__pic">
+                                    <img src="img/testimonial/2.jpeg" alt="">
+                                </div>
+                                <div class="testimonial__author__text">
+                                    <h5>Vanca</h5>
+                                    <span>Project Manager</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Testimonial Section End -->
+
+    <!-- Counter Section Begin -->
+    <section class="counter">
+        <div class="container">
+            <div class="counter__content">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="counter__item">
+                            <div class="counter__item__text">
+                                <img src="img/icons/ci-1.png" alt="">
+                                <h2 class="counter_num">5</h2>
+                                <p>Compled Projects</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="counter__item second__item">
+                            <div class="counter__item__text">
+                                <img src="img/icons/ci-2.png" alt="">
+                                <h2 class="counter_num">106</h2>
+                                <p>Happy clients</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="counter__item third__item">
+                            <div class="counter__item__text">
+                                <img src="img/icons/ci-3.png" alt="">
+                                <h2 class="counter_num">16</h2>
+                                <p>Perspective clients</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Counter Section End -->
+
+    <!-- Team Section Begin -->
+    <section class="team spad set-bg" data-setbg="img/team-bg.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title team__title">
+                        <span>Nice to meet</span>
+                        <h2>my experience</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 p-0">
+                    <div class="team__item set-bg" data-setbg="img/about/A.jpeg">
+                        <div class="team__item__text">
+                            <h4>Master of Ceremony</h4>
+                            <div class="team__item__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-dribbble"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 p-0">
+                    <div class="team__item team__item--second set-bg" data-setbg="img/about/B.jpeg">
+                        <div class="team__item__text">
+                            <h4>hiking</h4>
+                            <p>MT GALUNGGUNG</p>
+                            <div class="team__item__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-dribbble"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 p-0">
+                    <div class="team__item team__item--third set-bg" data-setbg="img/about/C.jpeg">
+                        <div class="team__item__text">
+                            <h4>KETUA KELAS</h4>
+                            <p>2024-2026</p>
+                            <div class="team__item__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-dribbble"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 p-0">
+                    <div class="team__item team__item--four set-bg" data-setbg="img/about/D.jpeg">
+                        <div class="team__item__text">
+                            <h4>CIKARA</h4>
+                            <p>GURU TAMU</p>
+                            <div class="team__item__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-dribbble"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 p-0">
+                    <div class="team__btn">
+                        <a href="#" class="primary-btn">HAVE FUN WITH ME</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Team Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__top">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="footer__top__logo">
+                            <a href="#"><img class="logo-img" src="img/logo.png" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="footer__top__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__option">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="footer__option__item">
+                            <h5>Hello</h5>
+                            <p>I’m Za — a web and game developer who enjoys creating clean, interactive, and meaningful digital experiences. I love exploring technology, blending creativity with logic, and continuously improving through every project I build.</p>
+                            <a href="about.html" class="read__more">Read more <span class="arrow_right"></span></a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-12">
+                        <div class="footer__option__item">
+                            
+                            <form action="#">
+                                <input type="text" placeholder="Email">
+                                <button type="submit"><i class="fa fa-send"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__copyright">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p class="footer__copyright__text">Copyright &copy;
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>
+                            | FRAZA S.A  
+                        </p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/masonry.pkgd.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize testimonial carousel with animations and responsive breakpoints
+        (function(){
+            if(!window.jQuery || !jQuery().owlCarousel) return;
+            jQuery(document).ready(function($){
+                var $slider = $('.testimonial__slider');
+                $slider.owlCarousel({
+                    loop: true,
+                    margin: 24,
+                    autoplay: true,
+                    autoplayTimeout: 5200,
+                    autoplayHoverPause: true,
+                    smartSpeed: 700,
+                    dots: true,
+                    nav: false,
+                    responsive: {
+                        0: { items: 1 },
+                        600: { items: 2 },
+                        992: { items: 3 }
+                    },
+                    animateIn: 'fadeIn',
+                    animateOut: 'fadeOut'
+                });
+
+                // Improve accessibility: add aria roles
+                $slider.attr('role','region').attr('aria-label','Client testimonials carousel');
+
+                // Pause autoplay on focus for keyboard users
+                $slider.on('focusin', function(){ $slider.trigger('stop.owl.autoplay'); });
+                $slider.on('focusout', function(){ $slider.trigger('play.owl.autoplay',[5200]); });
+            });
+        })();
+    </script>
+        <script>
+        (function(){
+            // Open data-setbg image in Magnific Popup when the button is clicked
+            function openImage(url){
+                if(!url) return;
+                if(window.jQuery && jQuery.magnificPopup){
+                    jQuery.magnificPopup.open({ items: { src: url }, type: 'image' });
+                } else {
+                    // fallback: open in new tab
+                    window.open(url, '_blank');
+                }
+            }
+            document.addEventListener('click', function(e){
+                var btn = e.target.closest && e.target.closest('.img-open');
+                if(!btn) return;
+                e.preventDefault();
+                e.stopPropagation();
+                var parent = btn.closest('.about__pic__item');
+                if(!parent) return;
+                var url = parent.getAttribute('data-setbg') || parent.dataset.setbg;
+                openImage(url);
+            });
+        })();
+        </script>
+        <!-- Back to top -->
+        <button class="back-to-top" aria-label="Back to top" title="Back to top"><i class="fa fa-arrow-up"></i></button>
+
+        <script>
+        (function(){
+            var btn = document.querySelector('.back-to-top');
+            if(!btn) return;
+            function checkScroll(){ if(window.scrollY > 320) btn.classList.add('show'); else btn.classList.remove('show'); }
+            window.addEventListener('scroll', checkScroll);
+            checkScroll();
+            btn.addEventListener('click', function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+        })();
+        </script>
+</body>
+
+</html>
